@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <include android:id="@+id/idToolbar"
+             layout="@layout/view_toolbar"
+             app:layout_constraintTop_toTopOf="parent"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintEnd_toEndOf="parent"/>
+
+
+
+
+    <androidx.viewpager.widget.ViewPager android:id="@+id/idViewPager"
+                                         android:layout_width="match_parent"
+                                         android:layout_height="0dp"
+                                         app:layout_constraintTop_toBottomOf="@id/idTabLayout"
+                                         app:layout_constraintBottom_toBottomOf="parent"
+                                         app:layout_constraintStart_toStartOf="parent"
+                                         app:layout_constraintEnd_toEndOf="parent"/>
+
+    <com.google.android.material.tabs.TabLayout
+            android:backgroundTint="@color/primaryColor"
+            android:id="@+id/idTabLayout"
+            android:layout_width="match_parent"
+
+            app:layout_constraintTop_toBottomOf="@id/idToolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_height="?attr/actionBarSize"
+            android:elevation="4dp"
+            app:tabSelectedTextColor="?attr/colorOnPrimary"
+            app:tabTextColor="?attr/colorOnPrimary"
+            app:tabIndicatorColor="?attr/colorOnPrimary"
+            app:tabMode="scrollable"
+            app:tabGravity="fill"
+
+    />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

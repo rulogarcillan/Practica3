@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="tabs">
+        <item>@string/tab_today</item>
+        <item>@string/tab_tomorrow</item>
+        <item>@string/tab_cities</item>
+        <item>@string/tab_profile</item>
+    </array>
+</resources>

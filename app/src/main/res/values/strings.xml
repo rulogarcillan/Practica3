@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="weather">Weather</string>
+
+    <string name="client_id">77398590831-54bnlgga9itcojp1atoqhtcmcn3ngqs0.apps.googleusercontent.com</string>
+
+    <string name="tab_today">Today</string>
+    <string name="tab_tomorrow">Tomorrow</string>
+    <string name="tab_profile">Profile</string>
+    <string name="tab_cities">My Cities</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="by_signing_up_you_agree_to_our_tos_and_privacy_policy">by signing up you agree to our ToS and Privacy
+        Policy
+    </string>
+    <string name="generic_server_error">"Server error"</string>
+    <string name="generic_db_error">"Database error"</string>
+    <string name="zip_postal">Zip postal</string>
+</resources>

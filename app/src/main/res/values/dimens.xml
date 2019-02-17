@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <fraction name="guide_line_start">0.25</fraction>
+    <fraction name="guide_line_end">0.80</fraction>
+    <dimen name="dimen_logo">96dp</dimen>
+    <dimen name="dimen_distance_logo">32dp</dimen>
+    <dimen name="margin_default">16dp</dimen>
+</resources>
