@@ -24,14 +24,18 @@ import tuppersoft.com.data.usescases.SaveUser
 import tuppersoft.com.domain.Dtos.User
 import tuppersoft.com.weather.App
 import tuppersoft.com.weather.R
+import tuppersoft.com.weather.core.di.Arm
 import tuppersoft.com.weather.core.platform.GlobalActivity
 import tuppersoft.com.weather.core.platform.GlobalConstants
-import tuppersoft.com.weather.core.platform.GlobalConstants.USER_ID
 import tuppersoft.com.weather.core.platform.GlobalFunctions
 import tuppersoft.com.weather.features.main.MainActivity
+import javax.inject.Inject
 
 
 class LoginActivity : GlobalActivity() {
+
+    @Inject
+    lateinit var arm: Arm
 
     var saveUser = SaveUser(UsersRepository.Network())
     var mGoogleSignInClient: GoogleSignInClient = GlobalFunctions.getGoogleSignInClient(App.instance)
