@@ -24,6 +24,7 @@ import tuppersoft.com.data.usescases.SaveUser
 import tuppersoft.com.domain.Dtos.User
 import tuppersoft.com.weather.App
 import tuppersoft.com.weather.R
+import tuppersoft.com.weather.core.di.AppComponent
 import tuppersoft.com.weather.core.di.Arm
 import tuppersoft.com.weather.core.platform.GlobalActivity
 import tuppersoft.com.weather.core.platform.GlobalConstants
@@ -53,7 +54,6 @@ class LoginActivity : GlobalActivity() {
         configThemeBar()
         initExoPlayer()
         if (isLogin()) goMainActivity()
-
     }
 
     override fun onResume() {

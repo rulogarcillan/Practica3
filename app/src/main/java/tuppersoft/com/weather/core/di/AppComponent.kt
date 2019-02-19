@@ -9,7 +9,6 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
     fun inject(app: App)
-
     fun arm() : Arm
 
 }
