@@ -16,7 +16,7 @@ interface UsersRepository {
     class Network : UsersRepository {
         override fun saveUser(app: Application, user: User): Either<Failure, User> {
             return try {
-                WeatherDataBase.getDatabase(app).usersDao().insertUser(user.toUserEntity())
+                WeatherDataBase.getDatabase(app).userDao().insertUser(user.toUserEntity())
                 Either.Right(user)
 
             } catch (exception: Throwable) {
@@ -26,7 +26,7 @@ interface UsersRepository {
 
         override fun getUser(app: Application, userId: String): Either<Failure, User> {
             return try {
-                Either.Right(WeatherDataBase.getDatabase(app).usersDao().findById(userId).toUser())
+                Either.Right(WeatherDataBase.getDatabase(app).userDao().findById(userId).toUser())
 
             } catch (exception: Throwable) {
                 Either.Left(Failure.DbError)

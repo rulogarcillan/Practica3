@@ -42,6 +42,12 @@ sealed class Either<out L, out R> {
             is Left -> fnL(a)
             is Right -> fnR(b)
         }
+
+    fun getValue(): Any =
+        when (this) {
+            is Left -> a as Any
+            is Right -> b as Any
+        }
 }
 
 // Credits to Alex Hart -> https://proandroiddev.com/kotlins-nothing-type-946de7d464fb

@@ -11,7 +11,7 @@ class GetCityByZip private constructor(): UseCase<City, GetCityByZip.Params>() {
         fun newInstance(): GetCityByZip = GetCityByZip()
     }
 
-    override fun run(params: Params) = repository.getCityByZipPostal(params.zipCode)
+    override suspend fun run(params: Params) = repository.getCityByZipPostal(params.zipCode)
 
     data class Params(val zipCode: String)
 }

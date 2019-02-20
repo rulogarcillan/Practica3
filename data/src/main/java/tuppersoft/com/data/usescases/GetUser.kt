@@ -13,7 +13,7 @@ class GetUser private constructor(): UseCase<User, GetUser.Params>() {
         fun newInstance(): GetUser = GetUser()
     }
 
-    override fun run(params: Params) = repository.getUser(params.app, params.userId)
+    override suspend fun run(params: Params) = repository.getUser(params.app, params.userId)
 
     data class Params(val app: Application, val userId: String)
 }

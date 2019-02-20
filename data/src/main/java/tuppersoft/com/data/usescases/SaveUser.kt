@@ -12,7 +12,7 @@ class SaveUser private constructor() : UseCase<User, SaveUser.Params>() {
         fun newInstance(): SaveUser = SaveUser()
     }
 
-    override fun run(params: Params) = repository.saveUser(params.app, params.user)
+    override suspend fun run(params: Params) = repository.saveUser(params.app, params.user)
 
     data class Params(val app: Application, val user: User)
 }
