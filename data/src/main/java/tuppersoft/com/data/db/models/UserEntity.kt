@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 
 @Entity(tableName = "users", primaryKeys = ["user_id"])
-data class UsersEntity(
+data class UserEntity(
     @ColumnInfo(name = "user_id")
     var userId: String,
     @ColumnInfo(name = "name")

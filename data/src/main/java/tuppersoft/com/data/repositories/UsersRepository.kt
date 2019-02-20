@@ -4,7 +4,7 @@ import android.app.Application
 import tuppersoft.com.data.db.WeatherDataBase
 import tuppersoft.com.data.mappers.toUser
 import tuppersoft.com.data.mappers.toUserEntity
-import tuppersoft.com.domain.Dtos.User
+import tuppersoft.com.domain.dtos.User
 import tuppersoft.com.domain.Either
 import tuppersoft.com.domain.Failure
 

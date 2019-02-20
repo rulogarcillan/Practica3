@@ -19,30 +19,23 @@ import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
 import tuppersoft.com.data.repositories.PreferencesRepository
-import tuppersoft.com.data.repositories.UsersRepository
 import tuppersoft.com.data.usescases.SaveUser
-import tuppersoft.com.domain.Dtos.User
+import tuppersoft.com.domain.dtos.User
 import tuppersoft.com.weather.App
 import tuppersoft.com.weather.R
-import tuppersoft.com.weather.core.di.AppComponent
-import tuppersoft.com.weather.core.di.Arm
 import tuppersoft.com.weather.core.platform.GlobalActivity
 import tuppersoft.com.weather.core.platform.GlobalConstants
 import tuppersoft.com.weather.core.platform.GlobalFunctions
 import tuppersoft.com.weather.features.main.MainActivity
-import javax.inject.Inject
 
 
 class LoginActivity : GlobalActivity() {
 
-    @Inject
-    lateinit var arm: Arm
-
-    var saveUser = SaveUser(UsersRepository.Network())
     var mGoogleSignInClient: GoogleSignInClient = GlobalFunctions.getGoogleSignInClient(App.instance)
     lateinit var layout: View
 
     companion object {
+        const val PATH = "asset:///"
         const val VIDEO_NAME = "thun.mp4"
         const val GOOGLE_SING = 1
     }
@@ -86,7 +79,7 @@ class LoginActivity : GlobalActivity() {
         val videoSource = ExtractorMediaSource.Factory(dataSourceFactory)
             .createMediaSource(
                 Uri
-                    .parse("asset:///$VIDEO_NAME")
+                    .parse("$PATH$VIDEO_NAME")
             )
 
         (idPlayerView.player as SimpleExoPlayer).prepare(videoSource)
@@ -113,7 +106,7 @@ class LoginActivity : GlobalActivity() {
             val myUser =
                 User(account?.id!!, account.displayName!!, account.email!!, account.photoUrl.toString())
 
-            saveUser.invoke(SaveUser.Params(App.instance, myUser)) { it.either(::handleFailure, ::handleSaveUSer) }
+            SaveUser.newInstance().invoke(SaveUser.Params(App.instance, myUser)) { it.either(::handleFailure, ::handleSaveUSer) }
 
         } catch (e: ApiException) {
             if (e.statusCode != GoogleSignInStatusCodes.SIGN_IN_CANCELLED) {
@@ -122,14 +115,14 @@ class LoginActivity : GlobalActivity() {
         }
     }
 
-    fun handleSaveUSer(user: User) {
+    private fun handleSaveUSer(user: User) {
         PreferencesRepository.savePreference(this, GlobalConstants.USER_ID, user.userId)
         goMainActivity()
     }
 
-    fun isLogin() = (GoogleSignIn.getLastSignedInAccount(this) != null)
+    private fun isLogin() = (GoogleSignIn.getLastSignedInAccount(this) != null)
 
-    fun goMainActivity() {
+    private fun goMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         this.startActivity(intent)
         finish()

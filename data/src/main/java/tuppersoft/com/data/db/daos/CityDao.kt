@@ -4,15 +4,15 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import tuppersoft.com.data.db.models.UserEntity
+import tuppersoft.com.data.db.models.CityEntity
 
 @Dao
-interface UserDao {
+interface CityDao {
 
-    @Query("SELECT * FROM users WHERE user_id = :userId")
-    fun findById(userId: String): UserEntity
+    @Query("SELECT * FROM cities WHERE city_id = :cityId")
+    fun findById(cityId: Long): CityEntity
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: UserEntity)
+    fun insertCity(city: CityEntity)
 
 }

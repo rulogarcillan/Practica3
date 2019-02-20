@@ -13,7 +13,6 @@ import tuppersoft.com.weather.features.main.MainActivity
 
 class ProfileFragment : Fragment() {
 
-
     companion object {
         fun newInstance(): ProfileFragment = ProfileFragment()
     }

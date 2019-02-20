@@ -1,4 +1,4 @@
-package tuppersoft.com.domain.Dtos
+package tuppersoft.com.domain.dtos
 
 data class User(
     var userId: String,
