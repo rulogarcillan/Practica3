@@ -3,5 +3,6 @@ package tuppersoft.com.domain.dtos
 
 data class City(
     val id: Long,
-    val name: String
+    val name: String,
+    var zipPostal: String = ""
 )

@@ -1,6 +1,5 @@
 package tuppersoft.com.data.cloud
 
-import android.app.Application
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

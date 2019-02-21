@@ -15,7 +15,7 @@ class MainViewModel(val app: Application) : GlobalContextViewModel(app) {
     init {
         val userId = PreferencesRepository.loadPreference(app, GlobalConstants.USER_ID, "") as String
         GetUser.newInstance().invoke(GetUser.Params(app, userId)) {
-            it.either(::handleFailure, ::handleUser)
+            it.fold(::handleFailure, ::handleUser)
         }
     }
 

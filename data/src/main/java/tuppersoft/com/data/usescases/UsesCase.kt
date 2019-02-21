@@ -1,10 +1,10 @@
 package tuppersoft.com.data.usescases
 
+import arrow.core.Either
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import tuppersoft.com.domain.Either
 import tuppersoft.com.domain.Failure
 
 abstract class UseCase<out Type, in Params> where Type : Any {

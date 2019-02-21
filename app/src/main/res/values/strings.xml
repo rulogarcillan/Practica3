@@ -13,6 +13,7 @@
         Policy
     </string>
     <string name="generic_server_error">"Server error"</string>
+    <string name="zippostal_server_error">"Zip postal not found"</string>
     <string name="generic_db_error">"Database error"</string>
     <string name="zip_postal">Zip postal</string>
 </resources>

@@ -10,6 +10,8 @@ data class CityEntity(
     @ColumnInfo(name = "city_id")
     var cityId: Long,
     @ColumnInfo(name = "name")
-    var name: String
+    var name: String,
+    @ColumnInfo(name = "zip_postal")
+    var zipPostal: String
 )
 

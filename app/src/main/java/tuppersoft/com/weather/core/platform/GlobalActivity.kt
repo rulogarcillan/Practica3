@@ -21,6 +21,7 @@ abstract class GlobalActivity : AppCompatActivity() {
         when (failure) {
             Failure.ServerError -> showError(getString(R.string.generic_server_error))
             Failure.DbError -> showError(getString(R.string.generic_db_error))
+            Failure.CodPostalNotFound->showError(getString(R.string.zippostal_server_error))
         }
     }
 

@@ -18,21 +18,21 @@ import com.google.android.gms.auth.api.signin.GoogleSignInStatusCodes
 import com.google.android.gms.common.api.ApiException
 import com.google.android.gms.tasks.Task
 import kotlinx.android.synthetic.main.activity_login.*
-import tuppersoft.com.data.repositories.PreferencesRepository
-import tuppersoft.com.data.usescases.SaveUser
 import tuppersoft.com.domain.dtos.User
 import tuppersoft.com.weather.App
 import tuppersoft.com.weather.R
+import tuppersoft.com.weather.core.extensions.observe
+import tuppersoft.com.weather.core.extensions.viewModel
 import tuppersoft.com.weather.core.platform.GlobalActivity
-import tuppersoft.com.weather.core.platform.GlobalConstants
 import tuppersoft.com.weather.core.platform.GlobalFunctions
 import tuppersoft.com.weather.features.main.MainActivity
 
 
 class LoginActivity : GlobalActivity() {
 
-    var mGoogleSignInClient: GoogleSignInClient = GlobalFunctions.getGoogleSignInClient(App.instance)
+    private var mGoogleSignInClient: GoogleSignInClient = GlobalFunctions.getGoogleSignInClient(App.instance)
     lateinit var layout: View
+    lateinit var loginViewModel: LoginViewModel
 
     companion object {
         const val PATH = "asset:///"
@@ -44,9 +44,9 @@ class LoginActivity : GlobalActivity() {
         super.onCreate(savedInstanceState)
         setContentView(tuppersoft.com.weather.R.layout.activity_login)
         layout = findViewById(R.id.layout)
+        loginViewModel = viewModel { observe(isLogged, ::goMainActivity) }
         configThemeBar()
         initExoPlayer()
-        if (isLogin()) goMainActivity()
     }
 
     override fun onResume() {
@@ -106,7 +106,7 @@ class LoginActivity : GlobalActivity() {
             val myUser =
                 User(account?.id!!, account.displayName!!, account.email!!, account.photoUrl.toString())
 
-            SaveUser.newInstance().invoke(SaveUser.Params(App.instance, myUser)) { it.either(::handleFailure, ::handleSaveUSer) }
+            loginViewModel.saveUser(myUser)
 
         } catch (e: ApiException) {
             if (e.statusCode != GoogleSignInStatusCodes.SIGN_IN_CANCELLED) {
@@ -115,20 +115,23 @@ class LoginActivity : GlobalActivity() {
         }
     }
 
-    private fun handleSaveUSer(user: User) {
-        PreferencesRepository.savePreference(this, GlobalConstants.USER_ID, user.userId)
-        goMainActivity()
+    private fun goMainActivity(isLogged: Boolean) {
+        if (isLogged) {
+            val intent = Intent(this, MainActivity::class.java)
+            this.startActivity(intent)
+            finish()
+        }
     }
-
-    private fun isLogin() = (GoogleSignIn.getLastSignedInAccount(this) != null)
-
-    private fun goMainActivity() {
-        val intent = Intent(this, MainActivity::class.java)
-        this.startActivity(intent)
-        finish()
-    }
-
 }
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,12 +1,12 @@
 package tuppersoft.com.data.repositories
 
 import android.app.Application
+import arrow.core.Either
 import tuppersoft.com.data.db.WeatherDataBase
 import tuppersoft.com.data.mappers.toUser
 import tuppersoft.com.data.mappers.toUserEntity
-import tuppersoft.com.domain.dtos.User
-import tuppersoft.com.domain.Either
 import tuppersoft.com.domain.Failure
+import tuppersoft.com.domain.dtos.User
 
 interface UsersRepository {
 
