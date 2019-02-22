@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
@@ -26,7 +25,7 @@ class CitiesFragment : Fragment(), CitiesAction {
 
     private lateinit var citiesViewModel: CitiesViewModel
     private lateinit var binding: ViewDataBinding
-    lateinit var rootView: View
+    private lateinit var rootView: View
 
     companion object {
         fun newInstance() = CitiesFragment()
@@ -37,16 +36,20 @@ class CitiesFragment : Fragment(), CitiesAction {
         binding = DataBindingUtil.inflate<FragmentCitiesBinding>(
             inflater, R.layout.fragment_cities, container, false
         )
+
         rootView = binding.root
+
         initViewModel()
+
         rootView.idSearch.setOnClickListener {
             citiesViewModel.addCity(idZip.text.toString())
         }
+
         return rootView
     }
 
     private fun initViewModel() {
-        citiesViewModel = (activity as AppCompatActivity).viewModel {
+        citiesViewModel = viewModel {
             failure(failure, ::handleFailure)
             observe(citiesLiveData, ::handleGetCities)
         }

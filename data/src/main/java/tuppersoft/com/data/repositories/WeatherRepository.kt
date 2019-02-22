@@ -20,7 +20,7 @@ interface WeatherRepository {
     fun saveCity(app: Application, userId: String, city: City): Either<Failure, City>
     fun deleteCityById(app: Application,cityId: Long, userId: String): Either<Failure, Int>
 
-    class Network : WeatherRepository, Request {
+    object Network : WeatherRepository, Request {
 
         override fun getCityByZipPostal(zipPostal: String): Either<Failure, City> {
             val zip = "$zipPostal,es"

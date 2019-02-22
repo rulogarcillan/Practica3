@@ -13,7 +13,7 @@ interface UsersRepository {
     fun saveUser(app: Application, user: User): Either<Failure, User>
     fun getUser(app: Application, userId: String): Either<Failure, User>
 
-    class Network : UsersRepository {
+    object Network : UsersRepository {
         override fun saveUser(app: Application, user: User): Either<Failure, User> {
             return try {
                 WeatherDataBase.getDatabase(app).userDao().insertUser(user.toUserEntity())

@@ -8,8 +8,6 @@ import tuppersoft.com.domain.dtos.City
 
 class AddFavoriteCity private constructor() : UseCase<City, AddFavoriteCity.Params>() {
 
-    private val repositoryWeather = WeatherRepository.Network()
-
     companion object {
         fun newInstance(): AddFavoriteCity = AddFavoriteCity()
     }
@@ -18,10 +16,10 @@ class AddFavoriteCity private constructor() : UseCase<City, AddFavoriteCity.Para
 
         lateinit var ret: Either<Failure, City>
 
-        ret = repositoryWeather.getCityByZipPostal(params.zipCode)
+        ret = WeatherRepository.Network.getCityByZipPostal(params.zipCode)
         if (ret.isRight()) {
-            ret.toOption().orNull()?.zipPostal=params.zipCode
-            ret = repositoryWeather.saveCity(params.app, params.userId, ret.toOption().orNull()!!)
+            ret.toOption().orNull()?.zipPostal = params.zipCode
+            ret = WeatherRepository.Network.saveCity(params.app, params.userId, ret.toOption().orNull()!!)
         }
         return ret
     }
